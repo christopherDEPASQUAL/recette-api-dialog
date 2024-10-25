@@ -1,8 +1,21 @@
-# React + Vite
+## Recipe-Api-Dialog
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description
+Recipe-Api-Dialog est une application React qui permet aux utilisateurs d'afficher des recettes aléatoirement issues d'une API, de consulter les détails de recette via une dialog.
 
-Currently, two official plugins are available:
+## Fonctionnalités
+- Affichage des recettes issues d'une API aléatoirement.
+- Affichage à partir d'une dialog, des détails complets de la recette notamment les ingrédients et les instructions pour la préparation qui sont eux aussi issus de l'API.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Lancement du projet
+
+- Accèder au dossier contenant le projet sur le terminal de votre pc
+- Lancer la commande `npm install` pour installer les dépendances
+- Lancer la commande `npm run dev` pour lancer le serveur du projet
+- Ouvrez le navigateur à partir de l'adresse. Par exemple : http://localhost:3000
+
+## Technologies utilisées
+- [React](https://reactjs.org/)
+- [Vite](https://vitejs.dev/)
+- [TheMealDB API](https://www.themealdb.com/)
+
