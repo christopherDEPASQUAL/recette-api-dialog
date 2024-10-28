@@ -1,3 +1,52 @@
+body {
+  font-family: 'Courier New', Courier, monospace;
+  display: flex;
+  justify-content: center;
+}
+
+.button-voir-plus {
+  background-color: #6799C9;
+  color: #FFFFFF;
+  border: solid 1.5px #043498;
+  font-size: 20px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.button-voir-plus:hover {
+  color: #043498;
+}
+
+.card {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #bcdbff;
+  justify-content: center;
+  padding: 50px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 500px;
+  margin: 20px auto;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 8px 8px 0 0;
+  margin-bottom: 15px;
+}
+
+.card h2 {
+  background-color: #ffffff;
+  width: 100%; 
+  padding: 10px;
+  font-size: 1.2em;
+  text-align: center;
+  margin: 0;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #043498;
+}
+
+
 .modal {
           position: fixed;
           z-index: 1;
@@ -15,14 +64,21 @@
           padding: 20px;
           border-radius: 5px;
           width: 80%;
-          max-width: 500px;
+          max-width: 50%;
+          max-height: 100%;
         }
         .close {
           float: right;
-          font-size: 28px;
+          font-size: 20px;
           font-weight: bold;
           cursor: pointer;
+          background-color: #6799C9;
+          color: aliceblue;
+          border: solid 1.5px #043498;
+          padding: 5px;
+          border-radius: 5px;
         }
         .close:hover {
-          color: red;
+          color: #043498;
         }
+

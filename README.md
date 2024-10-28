@@ -19,3 +19,7 @@ Recipe-Api-Dialog est une application React qui permet aux utilisateurs d'affich
 - [Vite](https://vitejs.dev/)
 - [TheMealDB API](https://www.themealdb.com/)
 
+## Apperçu
+
+- [Aperçu de l'application](./src/img/Capture%20d'écran%202024-10-28%20123759.png)
+

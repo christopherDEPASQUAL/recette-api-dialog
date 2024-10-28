@@ -2,62 +2,60 @@ import React, { useState, useEffect } from 'react';
 
 const RecetteDuJour = () => {
   const [recette, setRecette] = useState(null);
-  const [open, setOpen] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
 
-  // Fonction pour récupérer la recette du jour depuis l'API
+  // Récupérer la recette du jour
   useEffect(() => {
-    const fetchRecette = async () => {
+    const fetchData = async () => {
       try {
-        const response = await fetch('https://www.themealdb.com/api/json/v1/1/random.php');
-        
-        if (!response.ok) {
-          throw new Error('Erreur lors de la récupération de la recette');
+        const res = await fetch('https://www.themealdb.com/api/json/v1/1/random.php');
+        if (res.ok) {
+          const data = await res.json();
+          setRecette(data.meals[0]);
         }
-        
-        const data = await response.json();
-        setRecette(data.meals[0]);
-
-      } catch (error) {
-        console.error('Erreur lors de la récupération de la recette :', error);
+      } catch (err) {
+        console.log('Erreur pendant la récupération :', err);
       }
     };
-
-    fetchRecette();
+    fetchData();
   }, []);
 
-  // Fonction pour ouvrir/fermer la boîte de dialogue
-  const handleClickOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  // Gérer l'affichage de la modal
+  const toggleModal = () => setModalVisible(!modalVisible);
 
   return (
+    <>
     <div>
+      <h1>Recette du jour</h1>
       {recette ? (
-        <div>
-          <h1>Recette du jour</h1>
-          <h2>{recette.strMeal}</h2>
-          <button onClick={handleClickOpen}>Voir les détails</button>
+        <div className='card'>
+          <h2>Nom de la recette : {recette.strMeal}</h2>
+          <img src={recette.strMealThumb} alt={recette.strMeal} />
+          <button className='button-voir-plus' onClick={toggleModal}>Consulter les détails de la recette</button>
         </div>
       ) : (
-        <p>Chargement de la recette...</p>
+        <p>Chargement en cours...</p>
       )}
 
-      {open && (
+      {modalVisible && (
         <div className="modal">
           <div className="modal-content">
-            <span className="close" onClick={handleClose}>&times;</span>
-            <p><strong>Ingrédients :</strong></p>
+            <button className="close" onClick={toggleModal}>Fermer</button>
+            <h3>Ingrédients</h3>
             <ul>
               {Object.keys(recette)
                 .filter((key) => key.includes('strIngredient') && recette[key])
-                .map((key, index) => (
-                  <li key={index}>{recette[key]}</li>
+                .map((key, i) => (
+                  <li key={i}>{recette[key]}</li>
                 ))}
             </ul>
-            <p><strong>Instructions :</strong> {recette.strInstructions}</p>
+            <h3>Instructions</h3>
+            <p>{recette.strInstructions}</p>
           </div>
         </div>
       )}
     </div>
+    </>
   );
 };
 
