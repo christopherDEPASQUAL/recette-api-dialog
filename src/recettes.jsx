@@ -3,8 +3,8 @@ import React, { useState, useEffect } from 'react';
 const RecetteDuJour = () => {
   const [recette, setRecette] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
+  const [loading, setLoading] = useState(true)
 
-  // Récupérer la recette du jour
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -15,19 +15,29 @@ const RecetteDuJour = () => {
         }
       } catch (err) {
         console.log('Erreur pendant la récupération :', err);
+      } finally {
+        setLoading(false);
       }
     };
     fetchData();
   }, []);
 
-  // Gérer l'affichage de la modal
+  const getDayOfWeek = () => {
+    const days = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
+    const currentDay = new Date().getDay();
+    return days[currentDay];
+  };
+
   const toggleModal = () => setModalVisible(!modalVisible);
 
   return (
     <>
     <div>
-      <h1>Recette du jour</h1>
-      {recette ? (
+      
+     <h1>Recette du {getDayOfWeek()}</h1>
+      {loading ? ( 
+        <p>Chargement de la data en cours...</p>
+      ) : recette ? (
         <div className='card'>
           <h2>Nom de la recette : {recette.strMeal}</h2>
           <img src={recette.strMealThumb} alt={recette.strMeal} />

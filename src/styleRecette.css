@@ -7,7 +7,7 @@ body {
 .button-voir-plus {
   background-color: #6799C9;
   color: #FFFFFF;
-  border: solid 1.5px #043498;
+  border: solid 1.5px #ffffff;
   font-size: 20px;
   padding: 10px;
   border-radius: 10px;
@@ -33,6 +33,7 @@ body {
   width: 100%;
   border-radius: 8px 8px 0 0;
   margin-bottom: 15px;
+  margin-bottom: 50px;
 }
 
 .card h2 {
