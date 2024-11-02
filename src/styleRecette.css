@@ -10,7 +10,7 @@ body {
   border: solid 1.5px #ffffff;
   font-size: 20px;
   padding: 10px;
-  border-radius: 10px;
+
 }
 
 .button-voir-plus:hover {
@@ -23,8 +23,6 @@ body {
   background-color: #bcdbff;
   justify-content: center;
   padding: 50px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   max-width: 500px;
   margin: 20px auto;
 }
@@ -47,39 +45,18 @@ body {
   border-bottom: 1px solid #043498;
 }
 
+.close {
+  float: right;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #6799C9;
+  color: aliceblue;
+  border: solid 1.5px #043498;
+  padding: 5px;
+}
 
-.modal {
-          position: fixed;
-          z-index: 1;
-          left: 0;
-          top: 0;
-          width: 100%;
-          height: 100%;
-          background-color: rgba(0, 0, 0, 0.4);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-        .modal-content {
-          background-color: white;
-          padding: 20px;
-          border-radius: 5px;
-          width: 80%;
-          max-width: 50%;
-          max-height: 100%;
-        }
-        .close {
-          float: right;
-          font-size: 20px;
-          font-weight: bold;
-          cursor: pointer;
-          background-color: #6799C9;
-          color: aliceblue;
-          border: solid 1.5px #043498;
-          padding: 5px;
-          border-radius: 5px;
-        }
-        .close:hover {
-          color: #043498;
-        }
+.close:hover {
+  color: #043498;
+}
 

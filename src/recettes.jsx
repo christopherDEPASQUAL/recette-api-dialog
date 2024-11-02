@@ -1,24 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 const RecetteDuJour = () => {
   const [recette, setRecette] = useState(null);
-  const [modalVisible, setModalVisible] = useState(false);
-  const [loading, setLoading] = useState(true)
+  const dialogRef = useRef(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch('https://www.themealdb.com/api/json/v1/1/random.php');
-        if (res.ok) {
-          const data = await res.json();
+        const response = await fetch('https://www.themealdb.com/api/json/v1/1/random.php');
+        if (response.ok) {
+          const data = await response.json();
           setRecette(data.meals[0]);
         }
       } catch (err) {
-        console.log('Erreur pendant la récupération :', err);
-      } finally {
-        setLoading(false);
-      }
-    };
+        console.log('erreur pendant la récupération :', err);
+
+      };}
+
     fetchData();
   }, []);
 
@@ -28,29 +26,27 @@ const RecetteDuJour = () => {
     return days[currentDay];
   };
 
-  const toggleModal = () => setModalVisible(!modalVisible);
+  const afficherDialog = () => dialogRef.current.showModal();
+  const masquerDialog = () => dialogRef.current.close();
 
   return (
-    <>
     <div>
-      
-     <h1>Recette du {getDayOfWeek()}</h1>
-      {loading ? ( 
-        <p>Chargement de la data en cours...</p>
-      ) : recette ? (
+      <h1>Recette du {getDayOfWeek()}</h1>
+      {recette ? (
         <div className='card'>
           <h2>Nom de la recette : {recette.strMeal}</h2>
           <img src={recette.strMealThumb} alt={recette.strMeal} />
-          <button className='button-voir-plus' onClick={toggleModal}>Consulter les détails de la recette</button>
+          <button className='button-voir-plus' onClick={afficherDialog}>Consulter les détails de la recette</button>
         </div>
       ) : (
-        <p>Chargement en cours...</p>
+        <p>Chargement général en cours...</p>
       )}
 
-      {modalVisible && (
-        <div className="modal">
-          <div className="modal-content">
-            <button className="close" onClick={toggleModal}>Fermer</button>
+      {recette && (
+        <dialog ref={dialogRef}>
+          <button className='close' onClick={masquerDialog}>Fermer</button>
+          <header>Ingrédients et Instructions</header>
+          <div>
             <h3>Ingrédients</h3>
             <ul>
               {Object.keys(recette)
@@ -62,10 +58,9 @@ const RecetteDuJour = () => {
             <h3>Instructions</h3>
             <p>{recette.strInstructions}</p>
           </div>
-        </div>
+        </dialog>
       )}
     </div>
-    </>
   );
 };
 
